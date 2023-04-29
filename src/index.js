@@ -9,16 +9,16 @@ import "remixicon/fonts/remixicon.css";
 
 ReactDOM.render(
   <React.StrictMode>
+    <Router>
     <Auth0Provider 
       domain="dev-y8swsrzgufj5u0d2.us.auth0.com"
       clientId="5JswRtsHqqf3tgj2OffHHxn8qi2nAxEb"
       authorizationParams={{
         redirect_uri: window.location.origin}}>
-    <Router>
       
         <App />
-    </Router>
       </Auth0Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
