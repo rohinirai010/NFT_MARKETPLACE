@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import "./header.css";
 import { Container } from "reactstrap";
+import Web3 from 'web3';
 
 import { NavLink, Link } from "react-router-dom";
 
@@ -21,6 +22,7 @@ const NAV__LINKS = [
     display: "Contact",
     url: "/contact",
   },
+
 ];
 
 const Header = () => {
@@ -28,6 +30,13 @@ const Header = () => {
 
   const menuRef = useRef(null);
 
+  function handleConnect() {
+    if (window.ethereum) {
+      window.ethereum.request({ method: 'eth_requestAccounts' });
+    } else {
+      // MetaMask is not installed
+    }
+  }
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (
@@ -78,11 +87,18 @@ const Header = () => {
           </div>
 
           <div className="nav__right d-flex align-items-center gap-5 ">
-            <button className="btn d-flex gap-2 align-items-center">
+            <button className="btn d-flex gap-2 align-items-center" onClick={handleConnect} style={{color:'white'}}>
               <span>
                 <i class="ri-wallet-line"></i>
               </span>
-              <Link to="/wallet">Connect Wallet</Link>
+              connect wallet
+              {/* <Link to="/wallet">Connect Wallet</Link> */}
+            </button>
+            <button className="btn d-flex gap-2 align-items-center" >
+              <span>
+                <i class="ri-wallet-line"></i>
+              </span>
+              <Link to="/login">Login</Link>
             </button>
 
             <span className="mobile__menu">

@@ -5,6 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 
 import "../styles/wallet.css";
 
+
 const wallet__data = [
   {
     title: "Bitcoin",
@@ -22,6 +23,7 @@ const wallet__data = [
     title: "Metamask",
     desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium accusamus repellat rerum consequatur explicabo? Reiciendis!",
     icon: "ri-money-cny-circle-line",
+    
   },
 
   {
@@ -32,6 +34,8 @@ const wallet__data = [
 ];
 
 const Wallet = () => {
+
+
   return (
     <>
       <CommonSection title="Connect Wallet" />
