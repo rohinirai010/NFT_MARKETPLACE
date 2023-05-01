@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import CommonSection from "../components/ui/Common-section/CommonSection";
 import NftCard from "../components/ui/Nft-card/NftCard";
-import img from "../assets/images/img-01.jpg";
+// import img from "../assets/images/img-01.jpg";
 import avatar from "../assets/images/ava-01.png";
 
 import "../styles/create-item.css";
@@ -12,12 +12,13 @@ const Create = () => {
     id: "01",
     title: "Guhelloard",
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam adipisci cupiditate officia, nostrum et deleniti vero corrupti facilis minima laborum nesciunt nulla error natus saepe illum quasi ratione suscipit tempore dolores. Recusandae, similique modi voluptates dolore repellat eum earum sint.",
-    imgUrl: img,
+    imgUrl:"./assets/images/img-01.jpg" ,
     creator: "Trista Francis",
     creatorImg: avatar,
     currentBid: 7.89,
   });
-
+  
+  
   const imgFile = useRef("");
   const price = useRef("");
   const miniumBid = useRef("");
@@ -47,7 +48,7 @@ const Create = () => {
       id: "01",
       title: title.current.value,
       desc: dec.current.value,
-      imgUrl: img,
+      imgUrl: imgFile.current.value,
       creator: "Trista Francis",
       creatorImg: avatar,
       currentBid: miniumBid.current.value,
