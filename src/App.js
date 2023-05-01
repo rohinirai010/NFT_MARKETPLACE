@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import "./app.css";
 import Layout from "./components/Layout/Layout";
+import loadingImg from "./assets/images/loading-gif.gif";
 
 function App() {
   // const {user,loginWithRedirect,isAuthenticated, logout} = useAuth0();
@@ -13,7 +14,7 @@ function App() {
     logout,
   } = useAuth0();
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div style={{marginTop:'15%', marginLeft:'40%'}}> <img src={loadingImg} alt="" /></div>;
   }
   if (error) {
     return <div>Oops... {error.message}</div>;
@@ -22,32 +23,11 @@ function App() {
   if (isAuthenticated) {
     return (
       <div>
-        <Layout />;
-        Hello {user.name}{' '}
-        <button onClick={() => logout({ returnTo: window.location.origin })}>
-          Log out
-        </button>
+        <Layout />
       </div>
     );
   } else {
-    return <button onClick={loginWithRedirect}>Log in</button>;
+    return loginWithRedirect()
   }
 }
-  // console.log("login current user>>>>>>>>>",user);
-  // console.log("is auth>>>>>>.",isAuthenticated);
-
-  // return (
-  // <div>
-  //   <button onClick={(e) => loginWithRedirect()} style={{marginTop:'150px'}}>Log In</button>
-  //   <button onClick={(e) => logout()} style={{marginTop:'200px'}}>Logout</button>
-  //   {console.log("login current user>>>>>>>>>",user)}
-  //   {/* { isAuthenticated ? (<button style={{marginTop:'200px'}}>Logout</button>):(<button onClick={() => loginWithRedirect()} style={{marginTop:'150px'}}>Log In</button>)} */}
-  //   {/* {isAuthenticated?(<h2>hello</h2>:<h2></h2>)} */}
-  //   <Layout />;
-  // </div>
-
-  // )
-  
-// }
-
 export default App;

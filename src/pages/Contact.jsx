@@ -8,9 +8,51 @@ const Contact = () => {
   const emailRef = useRef("");
   const subjectRef = useRef("");
   const messageRef = useRef("");
+  const divAlert = useRef("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("name ref>>>>>>>", nameRef.current.value);
+    console.log("name ref>>>>>>>", emailRef.current.value);
+    console.log("name ref>>>>>>>", subjectRef.current.value);
+    console.log("name ref>>>>>>>", messageRef.current.value);
+
+    let name = nameRef.current.value;
+    let email = emailRef.current.value;
+    let subject = subjectRef.current.value;
+    let message = messageRef.current.value;
+
+    try {
+      const formdata = fetch(
+        "https://contactform-2ed5c-default-rtdb.firebaseio.com/form.json",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            subject,
+            message,
+          }),
+        }
+      );
+
+      nameRef.current.value = "";
+      emailRef.current.value = "";
+      subjectRef.current.value = "";
+      messageRef.current.value = "";
+      setTimeout(() => {
+        divAlert.current.style.display = "block";
+      }, 5000);
+      divAlert.current.style.display = "none";
+      // setTimeout(() => {
+      //   divAlert.current.style.display = "none";
+      // }, 5000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -26,6 +68,9 @@ const Contact = () => {
                 Temporibus ipsum aperiam cumque fugit suscipit animi natus
                 nostrum voluptatem iste quam!
               </p>
+              <div class="alert alert-success" role="alert" style={{display:'none'}} ref={divAlert}>
+                Your form submited successfully we will get back to you soon
+              </div>
               <div className="contact mt-4">
                 <form onSubmit={handleSubmit}>
                   <div className="form__input">
@@ -33,6 +78,7 @@ const Contact = () => {
                       type="text"
                       placeholder="Enter your name"
                       ref={nameRef}
+                      required
                     />
                   </div>
                   <div className="form__input">
@@ -40,6 +86,7 @@ const Contact = () => {
                       type="email"
                       placeholder="Enter your email"
                       ref={emailRef}
+                      required
                     />
                   </div>
                   <div className="form__input">
@@ -47,6 +94,7 @@ const Contact = () => {
                       type="text"
                       placeholder="Enter subject"
                       ref={subjectRef}
+                      required
                     />
                   </div>
                   <div className="form__input">
@@ -54,6 +102,7 @@ const Contact = () => {
                       rows="7"
                       placeholder="Write message"
                       ref={messageRef}
+                      required
                     ></textarea>
                   </div>
 
